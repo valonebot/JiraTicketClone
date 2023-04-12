@@ -25,7 +25,7 @@ function createTicket() {
         <div class="ticket-cont">
         <div class="ticket-color"></div>
         <div class="ticket-id">#sample_id123</div>
-        <div class="task-area">${modalBox.querySelector('textarea').value}</div>
+        <div class="task-area"></div>
         </div>
     `;
     mainContainer.append(div);
