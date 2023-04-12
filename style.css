@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(245,246,250);
+}
+.toolbox-cont{
+    height: 5rem;
+    background-color: rgb(75,75,75);
+    display: flex;
+    align-items: center;
+}
+.toolbox-cont > *{
+    margin-left: 4rem;
+    border-radius: 4px;
+}
+.toolbox-priority-cont{
+    height: 3.5rem;
+    width: 16rem;
+    background-color:rgb(61,61,61);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.toolbox-priority-cont > * {
+    cursor: pointer;
+}
+.action-btn-cont{
+    height: 3.5rem;
+    width: 8rem;
+    background-color: rgb(61,61,61);
+    display: flex;
+}
+.action-btn-cont  > * {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color:rgb(209,216,224);
+    cursor: pointer;
+}
+.action-btn-cont > *:hover  {
+    background-color: #485460;
+    transition: all 0.3s ease-in-out;
+}
+
+.color{
+    height: 1.5rem;
+    width: 2.5rem;
+    border-radius: 2px;
+}
+.lightpink{
+    background-color: lightpink;
+}
+.lightblue{
+    background-color: lightblue;
+}
+.lightgreen{
+    background-color: lightgreen;
+}
+.black{
+    background-color: black;
+}
+.modal-cont{
+    height: 30rem;
+    width: 45rem;
+    background-color: lightblue;
+    position: absolute;
+    top: calc((100vh - 30rem) / 2);
+    left: calc((100vw - 45rem) / 2)
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */;
+    /** There are also other ways to center the div */
+    display: none;
+}
+.text-area-cont {
+    width: 75%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: rgb(223,228,234);
+    resize: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.priority-colors-cont {
+    width: 25%;
+    height: 100%;
+    background-color: rgb(75,75,75);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.priority-color {
+    width: 60%;
+    height: 3rem;
+}
+.border{
+    border: 5px solid rgb(209,216,224);
+}
+.ticket-cont{
+    width: 18rem;
+    height: 15rem;
+    background-color:rgb(241,242,246);
+}
+.ticket-color {
+    height: 2rem;
+    background-color: rgb(255, 255, 165);
+}
+.ticket-id {
+    height: 3rem;
+    padding: 1rem;
+}
+.task-area{
+    height: calc( 100% - 5rem);
+    padding: 1rem;
+}
+.main-cont{
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
