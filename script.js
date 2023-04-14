@@ -8,6 +8,34 @@ const allPriorityColors = document.querySelectorAll('.priority-color');
 const colors = ['lightpink', 'lightblue', 'lightgreen', 'black'];
 let modalPriorityColor = colors[colors.length - 1];
 const textAreaCont = document.querySelector('.text-area-cont');
+const toolBoxColors = document.querySelectorAll('.color');
+//* Listener for toolBox filtering tickets on the their colors :
+toolBoxColors.forEach((currentColor) => {
+    currentColor.addEventListener('click', () => {
+        const allTicketContainers = Array.from(mainContainer.children);
+        allTicketContainers.forEach((currentContainer) => {
+            if (
+                currentContainer.children[0].classList[1] ===
+                currentColor.classList[0]
+            ) {
+                currentContainer.style.display = 'block';
+            } else {
+                currentContainer.style.display = 'none';
+            }
+        });
+    });
+});
+
+//* Listener for toolBox displaying all the tickets :
+toolBoxColors.forEach((currentColor) => {
+    currentColor.addEventListener('dblclick', () => {
+        const allTicketContainers = Array.from(mainContainer.children);
+        allTicketContainers.forEach((currentContainer) => {
+            currentContainer.style.display = 'block';
+        });
+    });
+});
+
 //* Listener for modal priority coloring :
 allPriorityColors.forEach((colorElem, idx) => {
     colorElem.addEventListener('click', (e) => {
@@ -79,7 +107,6 @@ function handleLock(ticketCont) {
     });
 }
 function handleColerPriority(ticketCont) {
-    console.log(ticketCont.children[0].classList);
     const ticketColorEle = ticketCont.children[0];
     ticketColorEle.addEventListener('click', () => {
         const currentColor = ticketColorEle.classList[1];
