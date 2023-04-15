@@ -71,6 +71,7 @@ body{
     width: 45rem;
     background-color: lightblue;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 4px;
     position: absolute;
     top: calc((100vh - 30rem) / 2);
     left: calc((100vw - 45rem) / 2)
