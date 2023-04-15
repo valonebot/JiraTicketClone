@@ -9,6 +9,19 @@ const colors = ['lightpink', 'lightblue', 'lightgreen', 'black'];
 let modalPriorityColor = colors[colors.length - 1];
 const textAreaCont = document.querySelector('.text-area-cont');
 const toolBoxColors = document.querySelectorAll('.color');
+let arrOfTickets = [];
+
+if (localStorage.getItem('jiraTicket')) {
+    //*  Get data from local storage
+    const arrOfTickets = JSON.parse(localStorage.getItem('jiraTicket'));
+    arrOfTickets.forEach((currentObj) => {
+        createTicket(
+            currentObj.modalPriorityColor,
+            currentObj.ticketTask,
+            currentObj.taskId
+        );
+    });
+}
 //* Listener for toolBox filtering tickets on the their colors :
 toolBoxColors.forEach((currentColor) => {
     currentColor.addEventListener('click', () => {
@@ -64,8 +77,7 @@ removeBtn.addEventListener('click', () => {
 modalBox.addEventListener('keydown', (e) => {
     if (e.key === 'Shift') {
         createTicket(modalPriorityColor, textAreaCont.value, shortid());
-        modalBox.style.display = 'none';
-        modalBox.querySelector('textarea').value = '';
+        setModalToDefault();
         addFlag = false;
     }
 });
@@ -83,10 +95,18 @@ function createTicket(modalPriorityColor, ticketTask, taskId) {
     handleRemove(div);
     handleLock(div);
     handleColerPriority(div);
+    arrOfTickets.push({ modalPriorityColor, ticketTask, taskId });
+    localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
 }
 function handleRemove(ticketCont) {
     ticketCont.addEventListener('click', () => {
+        console.log('hii');
         if (removeFlag) {
+            //* updation of arrOfTickets and localStorage :
+            let IndexOfArr = getIndex(ticketCont.children[1].innerText);
+            arrOfTickets.splice(IndexOfArr, 1);
+            localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
+            //* UI updation
             ticketCont.remove();
         }
     });
@@ -103,6 +123,12 @@ function handleLock(ticketCont) {
             iEle.classList.remove('fa-lock-open');
             iEle.classList.add('fa-lock');
             textArea.setAttribute('contenteditable', 'false');
+            //* updation of arrOfTickets and localStorage :
+            let IndexOfArr = getIndex(
+                textArea.previousElementSibling.innerText
+            );
+            arrOfTickets[IndexOfArr].ticketTask = textArea.innerText;
+            localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
         }
     });
 }
@@ -111,10 +137,19 @@ function handleColerPriority(ticketCont) {
     ticketColorEle.addEventListener('click', () => {
         const currentColor = ticketColorEle.classList[1];
         ticketColorEle.classList.remove(currentColor);
-        console.log(currentColor);
-        ticketColorEle.classList.add(randomColor(currentColor));
-        console.log(ticketCont.children[0].classList);
+        const colorGenerated = randomColor(currentColor);
+        ticketColorEle.classList.add(colorGenerated);
+        //* updation of arrOfTickets and localStorage :
+        let IndexOfArr = getIndex(ticketColorEle.nextElementSibling.innerText);
+        arrOfTickets[IndexOfArr].modalPriorityColor = colorGenerated;
+        localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
     });
+}
+function getIndex(taskId) {
+    const IndexOfArr = arrOfTickets.findIndex((currentObj) => {
+        return currentObj.taskId === taskId;
+    });
+    return IndexOfArr;
 }
 function randomColor(currentColor) {
     let j = Math.floor(Math.random() * 4);
@@ -126,4 +161,12 @@ function randomColor(currentColor) {
             i--;
         }
     }
+}
+function setModalToDefault() {
+    modalBox.style.display = 'none';
+    modalBox.querySelector('textarea').value = '';
+    allPriorityColors.forEach((colorElem, idx) => {
+        colorElem.classList.remove('border');
+    });
+    allPriorityColors[3].classList.add('border');
 }
