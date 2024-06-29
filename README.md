@@ -61,8 +61,6 @@ https://github.com/lovishduggal/JiraTicketClone.git
     - Click on a color in the toolbox to filter tickets by that color.
     - Double-click on a color in the toolbox to display all tickets.
 
-## Add video here
-
 ## **Contributing**
 
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
