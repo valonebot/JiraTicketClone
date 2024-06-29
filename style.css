@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-body{
+body {
     font-family: 'Roboto', sans-serif;
-    background-color: rgb(245,246,250);
+    background-color: rgb(245, 246, 250);
 }
-.toolbox-cont{
+.toolbox-cont {
     height: 5rem;
-    background-color: rgb(75,75,75);
+    background-color: rgb(75, 75, 75);
     display: flex;
     align-items: center;
 }
-.toolbox-cont > *{
+.toolbox-cont > * {
     margin-left: 4rem;
     border-radius: 4px;
 }
-.toolbox-priority-cont{
+.toolbox-priority-cont {
     height: 3.5rem;
     width: 16rem;
-    background-color:rgb(61,61,61);
+    background-color: rgb(61, 61, 61);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -29,44 +29,44 @@ body{
 .toolbox-priority-cont > * {
     cursor: pointer;
 }
-.action-btn-cont{
+.action-btn-cont {
     height: 3.5rem;
     width: 8rem;
-    background-color: rgb(61,61,61);
+    background-color: rgb(61, 61, 61);
     display: flex;
 }
-.action-btn-cont  > * {
+.action-btn-cont > * {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    color:rgb(209,216,224);
+    color: rgb(209, 216, 224);
     cursor: pointer;
 }
-.action-btn-cont > *:hover  {
+.action-btn-cont > *:hover {
     background-color: #485460;
     transition: all 0.3s ease-in-out;
 }
 
-.color{
+.color {
     height: 1.5rem;
     width: 2.5rem;
     border-radius: 2px;
 }
-.lightpink{
+.lightpink {
     background-color: lightpink;
 }
-.lightblue{
+.lightblue {
     background-color: lightblue;
 }
-.lightgreen{
+.lightgreen {
     background-color: lightgreen;
 }
-.black{
+.black {
     background-color: black;
 }
-.modal-cont{
+.modal-cont {
     height: 30rem;
     width: 45rem;
     background-color: lightblue;
@@ -75,7 +75,7 @@ body{
     position: absolute;
     top: calc((100vh - 30rem) / 2);
     left: calc((100vw - 45rem) / 2)
-    /* top: 50%;
+        /* top: 50%;
     left: 50%;
     transform: translate(-50%,-50%); */;
     /** There are also other ways to center the div */
@@ -86,7 +86,7 @@ body{
     height: 100%;
     border: none;
     outline: none;
-    background-color: rgb(223,228,234);
+    background-color: rgb(223, 228, 234);
     resize: none;
     padding: 1rem;
     font-size: 1.5rem;
@@ -94,7 +94,7 @@ body{
 .priority-colors-cont {
     width: 25%;
     height: 100%;
-    background-color: rgb(75,75,75);
+    background-color: rgb(75, 75, 75);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -104,13 +104,13 @@ body{
     width: 60%;
     height: 3rem;
 }
-.border{
-    border: 5px solid rgb(209,216,224);
+.border {
+    border: 5px solid rgb(209, 216, 224);
 }
-.ticket-cont{
+.ticket-cont {
     width: 18rem;
     height: 15rem;
-    background-color:rgb(241,242,246);
+    background-color: rgb(241, 242, 246);
 }
 .ticket-color {
     height: 2rem;
@@ -119,13 +119,13 @@ body{
     height: 3rem;
     padding: 1rem;
 }
-.task-area{
-    height: calc( 100% - 5rem - 2rem);
+.task-area {
+    height: calc(100% - 5rem - 2rem);
     padding: 1rem;
     border: none;
-   outline: none;
-   word-wrap: break-word;
-   overflow-y: auto;
+    outline: none;
+    word-wrap: break-word;
+    overflow-y: auto;
 }
 .ticket-lock {
     height: 2rem;
@@ -134,9 +134,9 @@ body{
     justify-content: flex-end;
     align-items: center;
     padding-right: 1rem;
-    color: rgb(165,177,194);
+    color: rgb(165, 177, 194);
 }
-.main-cont{
+.main-cont {
     display: flex;
     gap: 1rem;
     padding: 2rem;
@@ -145,20 +145,18 @@ body{
 }
 
 /** Media Screens */
-@media (max-width:572px)
-{
-    .toolbox-cont{
+@media (max-width: 572px) {
+    .toolbox-cont {
         height: 10rem;
         flex-direction: column;
         justify-content: space-around;
         align-content: center;
     }
-    .toolbox-cont > *{
+    .toolbox-cont > * {
         margin-left: 0rem;
     }
 }
-@media (max-width:850px)
-{
+@media (max-width: 850px) {
     .modal-cont {
         width: 90%;
         flex-direction: column;
