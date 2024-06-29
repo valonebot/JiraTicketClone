@@ -8,24 +8,24 @@ This project is a clone of the Jira ticketing system, designed to help manage ta
 
 ## **Features**
 
--   **Create Tickets:** Add new tickets with a task description and priority color**.**
+-   **Create Tickets:** Add new tickets with a task description and priority color.
 -   **Edit Tickets:** Modify the task description and change the priority color.
 -   **Delete Tickets:** Remove tickets from the list.
 -   **Filter Tickets:** Filter tickets based on their priority color.
--   **Local Storage:** Persist tickets data across browser sessions**.**
+-   **Local Storage:** Persist tickets data across browser sessions.
 
 ## **Technologies Used**
 
 -   **HTML:** Structure of the web application.
 -   **CSS:** Styling the application, including responsive design.
--   **JavaScript:** Functionality and interactivity of the application**.**
+-   **JavaScript:** Functionality and interactivity of the application.
 -   **Font Awesome:** Icons used in the application.
 
 ## **Project Structure**
 
 -   **index.html**: Main HTML file.
 -   **style.css**: Styles for the application.
--   **script.js:** file containing the main logic**.**
+-   **script.js:** file containing the main logic.
 
 ## **Installation**
 
