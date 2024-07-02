@@ -88,7 +88,7 @@ body {
     outline: none;
     background-color: rgb(223, 228, 234);
     resize: none;
-    padding: 1rem;
+    padding: 2rem;
     font-size: 1.5rem;
 }
 .priority-colors-cont {
@@ -115,8 +115,10 @@ body {
 .ticket-color {
     height: 2rem;
 }
-.ticket-id {
-    height: 3rem;
+.ticket-id-date-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem;
 }
 .task-area {
@@ -142,6 +144,32 @@ body {
     padding: 2rem;
     flex-wrap: wrap;
     justify-content: center;
+}
+.date-input {
+    position: absolute;
+    right: 189px;
+    top: 8px;
+}
+[type='date'] {
+    background: #fff
+        url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+        97% 50% no-repeat;
+}
+[type='date']::-webkit-inner-spin-button {
+    display: none;
+}
+[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+/* custom styles */
+.date-input > input {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+    width: 190px;
 }
 
 /** Media Screens */
@@ -174,5 +202,9 @@ body {
     }
     .priority-color {
         width: 20%;
+    }
+    .date-input {
+        right: 8px;
+        top: 8px;
     }
 }

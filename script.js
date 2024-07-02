@@ -8,6 +8,7 @@ const allPriorityColors = document.querySelectorAll('.priority-color');
 const colors = ['lightpink', 'lightblue', 'lightgreen', 'black'];
 let modalPriorityColor = colors[colors.length - 1];
 const textAreaCont = document.querySelector('.text-area-cont');
+const dueDate = document.querySelector('.due-date-input');
 const toolBoxColors = document.querySelectorAll('.color');
 let arrOfTickets = [];
 
@@ -18,7 +19,8 @@ if (localStorage.getItem('jiraTicket')) {
         createTicket(
             currentObj.modalPriorityColor,
             currentObj.ticketTask,
-            currentObj.taskId
+            currentObj.taskId,
+            currentObj.dueDate
         );
     });
 }
@@ -76,34 +78,45 @@ removeBtn.addEventListener('click', () => {
 //* when shift key is press on modal Box then following logic happens
 modalBox.addEventListener('keydown', (e) => {
     if (e.key === 'Shift') {
-        createTicket(modalPriorityColor, textAreaCont.value, shortid());
+        createTicket(
+            modalPriorityColor,
+            textAreaCont.value,
+            shortid(),
+            dueDate.value
+        );
         setModalToDefault();
         addFlag = false;
     }
 });
 //* createTicket() is for generate a ticket.
-function createTicket(modalPriorityColor, ticketTask, taskId) {
+function createTicket(modalPriorityColor, ticketTask, taskId, dueDate) {
     const div = document.createElement('div');
     div.setAttribute('class', 'ticket-cont');
     div.innerHTML = `
         <div class="ticket-color  ${modalPriorityColor}"></div>
-        <div class="ticket-id">${taskId}</div>
+        <div class="ticket-id-date-cont">
+            <div class="ticket-id">${taskId}</div>
+            <div class="due-date"> ${
+                dueDate ? `${dueDate}<sub>due</sub>` : ''
+            }</div>
+        </div>
         <div class="task-area">${ticketTask}</div>
         <div class="ticket-lock"><i class="fa-solid fa-lock"></i></div>
  `;
     mainContainer.append(div);
     handleRemove(div);
     handleLock(div);
-    handleColerPriority(div);
-    arrOfTickets.push({ modalPriorityColor, ticketTask, taskId });
+    handleColorPriority(div);
+    arrOfTickets.push({ modalPriorityColor, ticketTask, taskId, dueDate });
     localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
 }
 function handleRemove(ticketCont) {
     ticketCont.addEventListener('click', () => {
-        console.log('hii');
         if (removeFlag) {
             //* updation of arrOfTickets and localStorage :
-            let IndexOfArr = getIndex(ticketCont.children[1].innerText);
+            let IndexOfArr = getIndex(
+                ticketCont.children[1].children[0].innerText
+            );
             arrOfTickets.splice(IndexOfArr, 1);
             localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
             //* UI updation
@@ -125,14 +138,14 @@ function handleLock(ticketCont) {
             textArea.setAttribute('contenteditable', 'false');
             //* updation of arrOfTickets and localStorage :
             let IndexOfArr = getIndex(
-                textArea.previousElementSibling.innerText
+                textArea?.previousElementSibling?.children[0].innerText
             );
-            arrOfTickets[IndexOfArr].ticketTask = textArea.innerText;
+            arrOfTickets[IndexOfArr].ticketTask = textArea?.innerText;
             localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
         }
     });
 }
-function handleColerPriority(ticketCont) {
+function handleColorPriority(ticketCont) {
     const ticketColorEle = ticketCont.children[0];
     ticketColorEle.addEventListener('click', () => {
         const currentColor = ticketColorEle.classList[1];
@@ -140,8 +153,12 @@ function handleColerPriority(ticketCont) {
         const colorGenerated = randomColor(currentColor);
         ticketColorEle.classList.add(colorGenerated);
         //* updation of arrOfTickets and localStorage :
-        let IndexOfArr = getIndex(ticketColorEle.nextElementSibling.innerText);
-        arrOfTickets[IndexOfArr].modalPriorityColor = colorGenerated;
+        let IndexOfArr = getIndex(
+            ticketColorEle.nextElementSibling.children[0].innerText
+        );
+        arrOfTickets[IndexOfArr].modalPriorityColor = colorGenerated
+            ? colorGenerated
+            : colors[colors.length - 1];
         localStorage.setItem('jiraTicket', JSON.stringify(arrOfTickets));
     });
 }
@@ -165,6 +182,7 @@ function randomColor(currentColor) {
 function setModalToDefault() {
     modalBox.style.display = 'none';
     modalBox.querySelector('textarea').value = '';
+    modalBox.querySelector('.due-date-input').value = '';
     allPriorityColors.forEach((colorElem, idx) => {
         colorElem.classList.remove('border');
     });
