@@ -11,6 +11,7 @@ const textAreaCont = document.querySelector('.text-area-cont');
 const dueDate = document.querySelector('.due-date-input');
 const toolBoxColors = document.querySelectorAll('.color');
 let arrOfTickets = [];
+const searchInput = document.querySelector('.search-input');
 
 if (localStorage.getItem('jiraTicket')) {
     //*  Get data from local storage
@@ -24,6 +25,24 @@ if (localStorage.getItem('jiraTicket')) {
         );
     });
 }
+
+//* Listener for search input
+searchInput.addEventListener('input', (e) => {
+    const searchText = e.target.value.toLowerCase();
+    const allTicketContainers = Array.from(mainContainer.children);
+    allTicketContainers.forEach((currentContainer) => {
+        if (
+            currentContainer.children[2].innerText
+                .toLowerCase()
+                .includes(searchText)
+        ) {
+            currentContainer.style.display = 'block';
+        } else {
+            currentContainer.style.display = 'none';
+        }
+    });
+});
+
 //* Listener for toolBox filtering tickets on the their colors :
 toolBoxColors.forEach((currentColor) => {
     currentColor.addEventListener('click', () => {
