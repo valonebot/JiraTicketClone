@@ -111,6 +111,7 @@ body {
     width: 18rem;
     height: 15rem;
     background-color: rgb(241, 242, 246);
+    cursor: move;
 }
 .ticket-color {
     height: 2rem;
@@ -120,6 +121,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    user-select: none;
 }
 .task-area {
     height: calc(100% - 5rem - 2rem);
@@ -128,6 +130,7 @@ body {
     outline: none;
     word-wrap: break-word;
     overflow-y: auto;
+    user-select: none;
 }
 .ticket-lock {
     height: 2rem;

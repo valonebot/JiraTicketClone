@@ -111,6 +111,7 @@ modalBox.addEventListener('keydown', (e) => {
 function createTicket(modalPriorityColor, ticketTask, taskId, dueDate) {
     const div = document.createElement('div');
     div.setAttribute('class', 'ticket-cont');
+    div.setAttribute('draggable', 'true');
     div.innerHTML = `
         <div class="ticket-color  ${modalPriorityColor}"></div>
         <div class="ticket-id-date-cont">
@@ -207,3 +208,44 @@ function setModalToDefault() {
     });
     allPriorityColors[3].classList.add('border');
 }
+
+// drag and drop functionality on tickets
+const allTicketContainers = Array.from(mainContainer.children);
+allTicketContainers.forEach((currentContainer) => {
+    currentContainer.addEventListener('dragstart', (e) => {
+        // Adding dragging class to currentContainer after a delay
+        setTimeout(() => currentContainer.classList.add('dragging'), 0);
+    });
+
+    currentContainer.addEventListener('dragend', (e) => {
+        // Removing dragging class from currentContainer on dragend event
+        currentContainer.classList.remove('dragging');
+    });
+});
+
+const initMainContainer = (e) => {
+    e.preventDefault();
+    const draggingTicket = document.querySelector('.dragging');
+    console.log(draggingTicket);
+
+    // Getting all tickets(containers) except currently dragging and making array of them
+    let siblings = [
+        ...mainContainer.querySelectorAll('.ticket-cont:not(.dragging)'),
+    ];
+
+    // Finding the sibling after which the dragging item should be placed
+    let nextSibling = siblings.find((sibling) => {
+        return e.clientX <= sibling.offsetLeft + sibling.offsetWidth / 2;
+    });
+
+    // Inserting the dragging ticket(container) before the found sibling
+    console.log(draggingTicket, nextSibling);
+    if (nextSibling) {
+        mainContainer.insertBefore(draggingTicket, nextSibling);
+    } else {
+        mainContainer.appendChild(draggingTicket); // Append to the end if no suitable sibling is found
+    }
+};
+
+mainContainer.addEventListener('dragover', initMainContainer);
+mainContainer.addEventListener('dragenter', (e) => e.preventDefault());
